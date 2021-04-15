@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FIFO="/tmp/terraria-comms"
+rm "$FIFO"
+mkfifo "$FIFO"
+
+/opt/terraria/bin/backup &
+
+cat "$FIFO" | /opt/terraria/1412/TerrariaServer.bin.x86_64 -config /var/lib/terraria/config
+
+rm "$FIFO"

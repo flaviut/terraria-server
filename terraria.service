@@ -1,0 +1,13 @@
+[Unit]
+Description=server daemon for terraria
+
+[Service]
+User=terraria
+Type=exec
+ExecStart=/opt/terraria/bin/start-terraria
+ExecStop=/opt/terraria/bin/terrariad exit
+ExecStop=/usr/bin/sh -c 'while kill -0 $MAINPID 2>/dev/null; do sleep 1; done'
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target

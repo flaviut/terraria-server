@@ -1,0 +1,8 @@
+#!/bin/bash
+cd /var/lib/terraria/worlds
+duplicacy init terraria-worlds /var/lib/terraria/backup -storage-name terraria-backup || true
+while true; do
+	sleep 5m
+	/opt/terraria/bin/terrariad save || true
+	duplicacy backup -stats -threads 4 || true
+done
